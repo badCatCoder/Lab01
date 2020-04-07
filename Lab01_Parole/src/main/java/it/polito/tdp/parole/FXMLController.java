@@ -11,44 +11,53 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class FXMLController {
-	
-	Parole elenco ;
 
-    @FXML
-    private ResourceBundle resources;
+	Parole elenco;
 
-    @FXML
-    private URL location;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private TextField txtParola;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button btnInserisci;
+	@FXML
+	private TextField txtParola;
 
-    @FXML
-    private TextArea txtResult;
+	@FXML
+	private Button btnInserisci;
 
-    @FXML
-    private Button btnReset;
+	@FXML
+	private TextArea txtResult;
 
-    @FXML
-    void doInsert(ActionEvent event) {
-    	// TODO
-    }
+	@FXML
+	private Button btnReset;
 
-    @FXML
-    void doReset(ActionEvent event) {
-    	// TODO
-    }
+	@FXML
+	void doInsert(ActionEvent event) {
 
-    @FXML
-    void initialize() {
-        assert txtParola != null : "fx:id=\"txtParola\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert btnInserisci != null : "fx:id=\"btnInserisci\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
-        assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
+		elenco.addParola(txtParola.getText());
+		String res = "";
 
-        elenco = new Parole() ;
-    }
+		for (String p : elenco.getElenco())
+			res += ("> " + p + "\n");
+    	txtResult.setText(res);
+    	txtParola.clear();
+	}
+
+	@FXML
+	void doReset(ActionEvent event) {
+		// TODO
+		elenco.reset();
+		txtResult.clear();
+	}
+
+	@FXML
+	void initialize() {
+		assert txtParola != null : "fx:id=\"txtParola\" was not injected: check your FXML file 'Scene.fxml'.";
+		assert btnInserisci != null : "fx:id=\"btnInserisci\" was not injected: check your FXML file 'Scene.fxml'.";
+		assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
+		assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
+
+		elenco = new Parole();
+	}
 }
